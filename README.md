@@ -524,7 +524,7 @@ By now, you should be able to do the following:
 Check out these resources from Git:  
 
 * <a href="https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control " target="_blank" rel="noreferrer noopener">Version Control: Getting Started</a>
-* <a href="https://git-scm.com/book/en/v1/Git-Basics" target="_blank" rel="noreferrer noopener">Git Basics</a>
+* <a href="https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository" target="_blank" rel="noreferrer noopener">Git Basics</a>
  
 <a href="https://softwareengineering.stackexchange.com/questions/69178/what-is-the-benefit-of-gits-two-stage-commit-process-staging" target="_blank" rel="noreferrer noopener">Read</a> how developers use the two-step saving process to their advantage. 
 
