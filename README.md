@@ -5,18 +5,27 @@
 <span id=time-estimate class="color-grey-500">30 mins</span>
 
 <p id="lesson-description">
-  Making and saving changes to code might feel like playing a high-stakes game — one wrong move and it’s all over. But this actually isn’t true at all. Thankfully, enough developers have suffered through rewriting code that they invented the tools like Git to prevent such scenarios from ever happening.
+Making and saving changes to code can feel intimidating — you might worry that one mistake could ruin everything.
+
+But the good news is: developers have created tools to help prevent that from happening.
+
+One of the most important tools is <strong>Git</strong>, which allows you to track changes, save versions of your work, and go back to previous versions if something goes wrong.
+
+In this lesson, you’ll learn how Git helps developers work confidently and safely.
+
 </p>
 
 <h5 id="topics-header" class="color-grey-500">Topics</h5>
 
-Version Control
+What is Version Control?
 
 <hr>
 
-Common Git Commands
+Common Git Commands and Tracking Changes
 
 <hr>
+
+Working with Local and Remote Repositories on GitHub
 
 ---
 
@@ -25,9 +34,10 @@ Common Git Commands
 <p>By the end of this lesson, you'll be able to:</p>
 
 <ul>
-  <li>Explain why Git is an important tool for developers. </li>
-  <li>Use several of the most common Git commands.</li>
-  <li>Describe the phases of Git tracking.</li>
+  <li>Explain what Git is and why developers use it.</li>
+  <li>Use several of the most common Git commands to track and save changes.</li>
+  <li>Describe the different stages of how Git tracks changes (unstaged, staged, committed).</li>
+  <li>Understand the basic relationship between local repositories and remote repositories on GitHub.</li>
 </ul>
 
 ---
@@ -54,7 +64,7 @@ You might already use a simple method to avoid this problem, like saving differe
 
 Version control lets you keep a record of all the changes made to a project, so you can easily undo mistakes or return to a previous version when necessary.
 
-<img src="./assets/version-control.png" alt="Version Control Gif" style="width:500px;"/>
+<img src="./assets/version-control.png" alt="Version Control Gif" style="width:600px;"/>
 
 ---
 
@@ -79,7 +89,7 @@ Software developers use special tools to help manage and track changes in their 
 
 In this course, we will focus on one of the **most popular version control tools** used by developers around the world: **Git**.
 
-<img src="./assets/git-logo.png" alt="Version Control Gif" style="width:300px;"/>
+<img src="./assets/git-logo.png" alt="Version Control Gif" style="width:400px;"/>
 
 Git is used through the **Command Line Interface (CLI)** and offers many benefits, such as:
 
@@ -96,12 +106,12 @@ Git is used through the **Command Line Interface (CLI)** and offers many benefit
 
 If you don’t have Git installed yet, you can download it from <a href='http://git-scm.com/download/mac' target='_blank' rel='noopener noreferrer'>git-scm.com</a>.
 
-For Mac users:
+**For Mac users:**
 
 - You’ll first install a tool called **Homebrew**, if you do not already have it.
 - Homebrew will then help you install Git, all from your terminal window.
 
-For Windows users:
+**For Windows users:**
 
 - If you installed **Git Bash** earlier, Git should already be included — you’re ready to go!
 
@@ -122,7 +132,7 @@ You should see a response showing the Git version number. It should be **2.39.0 
 
 <h1 class="slide-header">Git Configuration</h1>
 
-Before making commits, Git needs to know who you are. You can set up your name and email address using the `git config` command. These details will be attached to all your commits, so collaborators know who made each change.
+Before using the software, Git needs to know who you are. You can set up your name and email address using the `git config` command. These details will be attached to all your saved code, so collaborators know who made each change.
 
 In your terminal, type the following commands (replacing the example information with your own name and email):
 
@@ -289,12 +299,12 @@ Sometimes, you might make changes to several files and want to stage them all at
 Instead of adding each file one by one, you can use:
 
 ```
-git add .
+git add -A
 ```
 
-The `.` means _“add everything that has changed in this directory.”_
+The `-A` means _“add everything that has changed in this directory.”_
 
-⚠️ **Be careful when using `git add .`**  
+⚠️ **Be careful when using `git add -A`**  
 It will add **every change** — even files you might not want to include (such as temporary files or files with sensitive information).
 
 Always double-check your changes with `git status` before using this command.
@@ -303,7 +313,7 @@ Always double-check your changes with `git status` before using this command.
 
 <h1 class="slide-header">Saving Your Changes with a Commit</h1>
 
-Once your changes are staged and you’re ready to save this version of your project, it’s time to commit.
+Once your changes are staged and you’re ready to save this version of your project, it’s time to **commit**.
 
 💻 **In your terminal, type:**
 
@@ -504,7 +514,7 @@ To do this, we need to connect our local repository to a **remote** repository �
 
 This is where **GitHub** comes in.
 
-<img src="./assets/git-vs-github.png" alt="Github Flow" style="width:600px;"/>
+<img src="./assets/git-vs-github.png" alt="Github Flow" style="width:700px;"/>
 
 ---
 
@@ -512,7 +522,7 @@ This is where **GitHub** comes in.
 
 **GitHub** is an online platform where developers can store and manage their Git repositories in the cloud.
 
-<img src="./assets/github-logo.png" alt="Github Logo" style="width:300px;"/>
+<img src="./assets/github-logo.png" alt="Github Logo" style="width:400px;"/>
 
 **On GitHub, you can:**
 
@@ -524,7 +534,7 @@ You can think of GitHub as a tool that works alongside the Git software you inst
 
 In many ways, GitHub is like having an online folder (a **remote repository**) that stays in sync with your computer.
 
-<img src="./assets/write-and-push-code.png" alt="Github Flow" style="width:600px;"/>
+<img src="./assets/write-and-push-code.png" alt="Github Flow" style="width:700px;"/>
 
 ---
 
@@ -569,7 +579,7 @@ Here is a **high-level overview** of that workflow:
 On GitHub, if you want to make changes to someone else’s project, the first step is to **fork** it.  
 Forking creates a copy of the original repository in your own GitHub account.
 
-<img src="./assets/github-fork.png" alt="Fork a Repo" style="width:600px;"/>
+<img src="./assets/github-fork.png" alt="Fork a Repo" style="width:700px;"/>
 
 This copy contains:
 
@@ -579,7 +589,7 @@ This copy contains:
 
 For example, if you fork the Node.js repository, you now have your own version to experiment with. Any changes or mistakes you make will not affect the original project.
 
-<img src="./assets/fork.png" alt="Github Fork a Repo" style="width:800px;"/>
+<img src="./assets/fork.png" alt="Github Fork a Repo" style="width:900px;"/>
 
 At this stage, it’s enough to understand that **forking lets you safely work on your own version of a project.**
 
@@ -590,7 +600,7 @@ At this stage, it’s enough to understand that **forking lets you safely work o
 After forking a repository on GitHub, the next step is often to **clone** it.  
 Cloning makes a local copy of the project on your own computer so you can edit the files.
 
-<img src="./assets/github-clone.png" alt="Clone a Repo" style="width:600px;"/>
+<img src="./assets/github-clone.png" alt="Clone a Repo" style="width:700px;"/>
 
 To do this, you would navigate to the folder where you’d like to save the repository, and type:
 
@@ -602,7 +612,7 @@ You can find the repo's URL by clicking the green **Code** button on the GitHub 
 
 **This is just an introduction to these concepts. You’ll practice them more in future lessons!**
 
-<img src="./assets/clone.png" alt="Github Clone a Repo" style="width:800px;"/>
+<img src="./assets/clone.png" alt="Github Clone a Repo" style="width:900px;"/>
 
 ---
 
@@ -639,7 +649,7 @@ git push origin main
 
 You don’t need to fully understand these terms yet — just know that `git push origin main` will update your project on GitHub with the latest changes from your computer.
 
-<img src="./assets/write-and-push-code.png" alt="Github Flow" style="width:600px;"/>
+<img src="./assets/write-and-push-code.png" alt="Github Flow" style="width:700px;"/>
 
 ---
 
@@ -657,7 +667,7 @@ Pull requests are part of GitHub’s collaboration features and are **submitted 
 
 For now, it’s enough to understand that a **pull request** allows you to suggest changes to someone else’s project in a safe, reviewable way.
 
-<img src="./assets/new-pull-request.png" alt="Pull request" style="width:700px;"/>
+<img src="./assets/new-pull-request.png" alt="Github Pull Request" style="width:900px;"/>
 
 ---
 
