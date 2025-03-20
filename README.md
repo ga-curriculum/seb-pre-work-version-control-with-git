@@ -223,7 +223,7 @@ You can confirm this by asking Git for a status update.
 💻 **In your terminal, type:**
 
 ```
-$ git status
+git status
 ```
 
 Git will respond with a message letting you know that there are **no commits yet** and no changes to track.
@@ -239,7 +239,7 @@ Let’s add a new text file to your project.
 💻 **In your terminal, type:**
 
 ```
-$ touch post.txt
+touch post.txt
 ```
 
 This will create an empty file called `post.txt` inside the `GA-Blog` directory.
@@ -270,7 +270,7 @@ When you stage a file, you are saying: _“I want this file to be part of my nex
 💻 **In your terminal, type:**
 
 ```
-$ git add post.txt
+git add post.txt
 ```
 
 **This will stage the file so it’s ready to be committed.**
