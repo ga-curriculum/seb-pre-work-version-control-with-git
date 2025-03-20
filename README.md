@@ -338,18 +338,17 @@ In Git, saving changes is a **two-step process**:
 
 1. First, you **stage** the file using:
 
-```
-git add <your-file-name>
-```
+    ```
+    git add <your-file-name>
+    ```
 
 2. Then, you **commit** the staged changes with a message using:
 
-```
-git commit -m "your message here"
-```
+    ```
+    git commit -m "your message here"
+    ```
 
-This might feel unusual if you are used to simply clicking “Save” in other programs.  
-But for developers, this two-step process is helpful — it allows you to:
+This might feel unusual if you are used to simply clicking “Save” in other programs. But for developers, this two-step process is helpful — it allows you to:
 
 - Make small, careful changes.
 - Review what you’re saving before you finalize it.
