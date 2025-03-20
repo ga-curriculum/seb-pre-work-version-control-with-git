@@ -698,7 +698,7 @@ You’ve just learned a lot of new terms! Let’s do a quick review:
 
 - A request to the repository owner, asking them to review and possibly add your changes from your remote repository to the main project on GitHub.
 
-**_Don’t worry if this feels like a lot — you’ll practice these steps more in the future, and they will start to feel familiar!_**
+> Don’t worry if this feels like a lot — you’ll practice these steps more in the future, and they will start to feel familiar!
 
 ---
 
