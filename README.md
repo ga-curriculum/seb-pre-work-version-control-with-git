@@ -34,441 +34,628 @@ Common Git Commands
 
 <h1 class="slide-header">Git on the CLI</h1>
 
-At this point, you’re capable of navigating your file structure and interacting with your computer via the Command Line.
+By now, you know how to navigate your computer and work with files using the **command line interface (CLI)**.
 
-This is an important skill for a developer to have, but we should expand a bit on the developer-specific capabilities the CLI offers. In particular, the ability to share and manage the codebase of programming projects using `git`.
+This is a key skill for any developer. But the CLI can do more than help you move around your computer — it also allows you to **share and manage code** for programming projects using a tool called **Git**.
 
-Let’s dive in.
+In this lesson, we’ll learn how developers use Git on the command line to keep track of their work and collaborate with others.
+
+Let’s get started!
 
 ---
 
 <h1 class="slide-header">Version Control</h1>
 
-You’re on your computer plugging away at a research project, and it’s all going well. You make some changes and hit “Save.” Then you realize: Those last changes you made? They were all wrong. You need to undo them, but you can’t. The previous version is already gone for good.
+Imagine you’re working on a big project and everything is going well. You make some changes and click **Save**. Then suddenly, you realize those last changes were mistakes — and you can’t go back to how it was before.
 
-You might already have a system in place for avoiding such a mishap — maybe you save your document multiple times under different names so you can return to a previous stage of the project. Smart!
+You might already use a simple method to avoid this problem, like saving different copies of a document with names like `project-v1`, `project-v2`, or `project-final`. This helps you return to an earlier version if needed.
 
-Developers call this process **version control**.
+**Developers have a name for this process: version control.**
 
-<img src="./assets/version-control.gif" alt="Version Control Gif" style="width:500px;"/>
+Version control lets you keep a record of all the changes made to a project, so you can easily undo mistakes or return to a previous version when necessary.
+
+<img src="./assets/version-control.png" alt="Version Control Gif" style="width:500px;"/>
 
 ---
 
-<h1 class="slide-header">Let's Drive That Home</h1>
+<h1 class="slide-header">Why Version Control Matters</h1>
 
-This kind of capability may be a foreign concept, as most of us get by without version control in other industries; however, version control is non-negotiable for developers.
+In everyday tasks, you might not need version control. But for developers, it is absolutely essential.
 
 Why?
 
-Development is an iterative process with a lot of dependencies. Imagine if a sentence you wrote on the first page of that research paper impacted a sentence on Page 15 — as in, ruined it.
+Because **development is a complex, step-by-step process where everything is connected**.
 
-Lines of code do not live independently like sentences in a document. Any line of code that is added or removed could make major changes to the program as a whole. Hence, the emphasis on version control for developers.
+- Imagine writing a sentence on Page 1 of a document that accidentally changes or breaks a sentence on Page 15.
+- In code, every line can affect other parts of the program. Removing or changing one line could cause major problems elsewhere.
+
+That’s why developers rely on **version control** to safely track and manage changes in their code. It helps them work confidently, fix mistakes, and keep projects running smoothly.
 
 ---
 
-<h1 class="slide-header">Getting On Board with Git</h1>
+<h1 class="slide-header">Getting Started with Git</h1>
 
-Software developers have created a number of tools to solve this version control problem for their own projects: Subversion, CVS, Perforce, and many others.
+Software developers use special tools to help manage and track changes in their projects.
 
-In fact, some companies, like Google, have developed their own special kinds of version control.
+In this course, we will focus on one of the **most popular version control tools** used by developers around the world: **Git**.
 
-In this course, we’ll focus on one particularly popular program that's accessed via the Command Line Interface called **Git**.
+<img src="./assets/git-logo.png" alt="Version Control Gif" style="width:300px;"/>
 
-Git offers a variety of advantages to its users, including:
+Git is used through the **Command Line Interface (CLI)** and offers many benefits, such as:
 
-- Rolling back changes.
-- Rolling forward changes.
-- Mitigating competing versions of the same file.
-- Tracking changes for multiple files.
-- Recording only the _changes_ made rather than saving entire separate versions of each file.
-- And many more...
+- Undoing changes (rolling back).
+- Reapplying changes (rolling forward).
+- Handling different versions of the same file from multiple people.
+- Tracking changes across many files.
+- Saving only the changes made, rather than making full copies of each file.
+- And much more!
 
 ---
 
 <h1 class="slide-header">Installing Git</h1>
 
-If you don’t already have Git, you can install it by following directions provided on <a href='http://git-scm.com/download/mac' target='_blank' rel='noopener noreferrer'>git-scm.com</a>.
+If you don’t have Git installed yet, you can download it from <a href='http://git-scm.com/download/mac' target='_blank' rel='noopener noreferrer'>git-scm.com</a>.
 
-First, you'll install a tool called Homebrew if you haven't already. Then, Homebrew will help you install Git. All of this will take place in your terminal window.
+For Mac users:
 
-If you’re following along on Windows and installed Git Bash, Git should have been installed along with it, so you’re all set.
+- You’ll first install a tool called **Homebrew**, if you do not already have it.
+- Homebrew will then help you install Git, all from your terminal window.
 
-You can check to see if this installation worked by opening up the terminal window and typing:
+For Windows users:
+
+- If you installed **Git Bash** earlier, Git should already be included — you’re ready to go!
+
+**How to check if Git is installed:**
+
+1. Open your terminal window.
+2. Type the following command and press `Enter`:
 
 ```
  git --version
 ```
 
-This will show you what version of Git is running. Your computer should return something greater than or equal to `2.10.1`.
+You should see a response showing the Git version number. It should be **2.39.0 or higher**.
 
 <img src="./assets/git-version.png" alt="Git Version" style="width:700px;"/>
 
 ---
 
-<h1 class="slide-header">Let's Dive In</h1>
+<h1 class="slide-header">Git Configuration</h1>
 
-For the remainder of the lesson, we recommend following the flow outlined below:
+Before making commits, Git needs to know who you are. You can set up your name and email address using the `git config` command. These details will be attached to all your commits, so collaborators know who made each change.
 
-- Read about the concepts on the slides.
-- Watch animations of what to expect.
-- Try it out on your own in the terminal.
+In your terminal, type the following commands (replacing the example information with your own name and email):
 
-This kind of hands-on practice is crucial. After all, we’re pretty certain no one learned to ride a bike just by reading a how-to.
+💻 **In your terminal, type:**
 
-When you see this icon, it means, “Go test it out yourself and come back when you’re done.”
+```
+git config --global user.name "Your Name"
+git config --global user.email yourname@example.com
+```
 
-<img src="./assets/Icon_Test_Flask_2.png" alt="Flask Icon" style="width:200px;"/>
+- The `--global` flag means these settings will apply to **all Git projects** on your computer, not just the one you are working on now.
+- Make sure to use an email address that you will use (or already use) for your **GitHub account**.
+  - If you do not have a GitHub account yet, use an email you plan to sign up with later.
 
 ---
 
-<h1 class="slide-header">The Project at Hand</h1>
+<h1 class="slide-header">Let’s Get Hands-On</h1>
 
-You were just hired to manage all of the blog content for a media company called Gorilla Army.
+From this point forward, here’s the best way to learn and follow along:
 
-To start, create a directory on your desktop called `GA-Blog`.
+1. **Read** the information on each slide carefully.
+2. **Look at the images** to understand what the commands and results should look like.
+3. **Practice** by typing the commands in your terminal and seeing the results for yourself.
 
-To take advantage of Git superpowers, we have to add a hidden directory called `.git/` to our project directory, which contains all of the data Git needs to operate. This is called “initializing.”
+Hands-on practice is one of the best ways to learn!
 
-Next, navigate to the `GA-Blog` directory you just created and run this command:
+You can read about commands, but the real learning happens when you **try them yourself**.
+
+Whenever you see this message-
 
 ```
-$ git init
+💻 In your terminal, type:
 ```
+
+It’s your signal to **pause, type the command in your terminal, and see what happens**.
+
+---
+
+<h1 class="slide-header">The Project</h1>
+
+You’ve just been hired to manage all the blog content for a media company called **Global Adventures**.
+
+Let’s start by setting up your project folder.
+
+💻 **In your terminal:**
+
+1. First, navigate to your desktop in the terminal: **`cd ~/Desktop`**
+2. Create a new directory called `GA-Blog`: **`mkdir GA-Blog`**
+3. Move into the `GA-Blog` directory: **`cd GA-Blog`**
+
+To use **Git** in this folder, we need to **initialize** it. This adds a hidden `.git/` directory that contains everything Git needs to track changes.
+
+💻 **In your terminal, type:**
+
+```
+git init
+```
+
+This will transform your plain **directory** into a **git repository**.
 
 <img src="./assets/git-init.png" alt="Git Init" style="width:700px;"/>
-
----
-
-<h1 class="slide-header">Go Try</h1>
-
-Run `$ git init` in the `GA-Blog` directory you just created.
-
-<img src="./assets/Icon_Test_Flask_2.png" alt="Flask Icon" style="width:200px;"/>
 
 **Caution**: Do not execute this command in your **home directory**! It’ll make working with any other repositories very difficult. Use `pwd` to check your location if you’re unsure.
 
 ---
 
-<h1 class="slide-header">Can't Find It?</h1>
+<h1 class="slide-header">Can't See the <code>.git</code> Folder?</h1>
 
-If you navigate to your `GA-Blog` directory in the GUI, you won’t see any additional files. This is because hidden files aren’t visible on your computer by default. To see the `.git/` directory, you need to run `ls -a` from the command line.
+If you open the `GA-Blog` directory in your computer’s graphical interface, you won’t see any new files.
+
+That’s because the `.git/` directory is hidden by default.
+
+💻 **In your terminal, type:**
+
+```
+ls -a
+```
+
+**This will show the `.git/` directory along with all other files.**
 
 ---
 
-<h1 class="slide-header">Status Update</h1>
+<h1 class="slide-header">Checking the Project Status</h1>
 
-Because you just started at Gorilla Army, your `GA-Blog` directory is empty. We can confirm this by running `git status`, which asks Git to give us an update on our project’s status.
+Right now, your `GA-Blog` directory is empty — you haven’t added any files yet.  
+You can confirm this by asking Git for a status update.
+
+💻 **In your terminal, type:**
 
 ```
 $ git status
 ```
 
-We should get a response like this:
+Git will respond with a message letting you know that there are **no commits yet** and no changes to track.
 
 <img src="./assets/no-commits-yet.png" alt="Git Status No commits" style="width:700px;"/>
 
-Each save we make to our repository is called a **commit**; this message is telling us that our project has no unsaved changes.
-
 ---
 
-<h1 class="slide-header">Your Turn</h1>
+<h1 class="slide-header">Creating a File</h1>
 
-Go run `$ git status` in your `GA-Blog` directory.
+Let’s add a new text file to your project.
 
-<img src="./assets/Icon_Test_Flask_2.png" alt="Flask Icon" style="width:200px;"/>
-
----
-
-<h1 class="slide-header">Make a File</h1>
-
-To create a new text file called you'll use the `touch` command:
+💻 **In your terminal, type:**
 
 ```
 $ touch post.txt
 ```
 
-Then, check the status again. Git has identified that a change has been made: There is now a file in your repository.
+This will create an empty file called `post.txt` inside the `GA-Blog` directory.
+
+**Next, check the status again by typing:**
+
+```
+git status
+```
+
+**to confirm that Git sees your new file.**
 
 <img src="./assets/git-status-post-untracked.png" alt="Git Status Post untracked" style="width:700px;"/>
 
 ---
 
-<h1 class="slide-header">Your Turn</h1>
+<h1 class="slide-header">Staging Changes</h1>
 
-Create a new text file called `$ touch post.txt` inside of `GA-Blog` and check the status again.
+Git won’t automatically save changes for you — you need to tell it which changes to include.
 
-<img src="./assets/Icon_Test_Flask_2.png" alt="Flask Icon" style="width:200px;"/>
+To do this, you **stage** the changes using the `git add` command.
 
----
+When you stage a file, you are saying: _“I want this file to be part of my next commit.”_
 
-<h1 class="slide-header">Staging</h1>
+- **Staging** adds changes to a list that will be saved when you commit.
+- You can still remove files from this list before committing, so staging is not permanent yet.
 
-Like the terminal, Git doesn’t make any assumptions about what changes you want to save and when you want to save them. Instead, you need to explicitly tell it what to do.
-
-To add this change to your next commit, you'll use the `git add` command.
-
-```
-$ git add post.txt
-```
-
-The command is `add`, but we describe the operation by saying that the file has been “staged.” In other words, it has been added to the list of changes that will be officially saved with our next commit.
-
-The files on this list aren’t final, and any of these changes can be removed, or “unstaged.”
-
-<img src="./assets/git-add-post.png" alt="Git Add Post" style="width:700px;"/>
-
----
-
-<h1 class="slide-header">Try it Out</h1>
-
-Add the change to your next commit using the `git add` command.
+💻 **In your terminal, type:**
 
 ```
 $ git add post.txt
 ```
 
-<img src="./assets/Icon_Test_Flask_2.png" alt="Flask Icon" style="width:200px;"/>
+**This will stage the file so it’s ready to be committed.**
 
 ---
 
-<h1 class="slide-header">Status Update</h1>
+<h1 class="slide-header">Checking Status After Staging</h1>
 
-If we run `git status` again, we’ll see that the addition of `post.txt` is staged and ready to be committed, like this:
+If you run `git status` again after using `git add`, you will see that `post.txt` is now **staged** and ready to be committed. It will show up under **“Changes to be committed:”**
+
+💻 **In your terminal, type:**
+
+```
+git status
+```
+
+**This will confirm that your file is staged and waiting to be committed.**
 
 <img src="./assets/git-add-post.png" alt="Git Version" style="width:700px;"/>
 
 ---
 
-<h1 class="slide-header">Your Turn</h1>
+<h1 class="slide-header">Adding All Changes at Once</h1>
 
-Run `git status` again.
+Sometimes, you might make changes to several files and want to stage them all at once.  
+Instead of adding each file one by one, you can use:
 
-<img src="./assets/Icon_Test_Flask_2.png" alt="Flask Icon" style="width:200px;"/>
+```
+git add .
+```
+
+The `.` means _“add everything that has changed in this directory.”_
+
+⚠️ **Be careful when using `git add .`**  
+It will add **every change** — even files you might not want to include (such as temporary files or files with sensitive information).
+
+Always double-check your changes with `git status` before using this command.
 
 ---
 
-<h1 class="slide-header">For Efficiency's Sake</h1>
+<h1 class="slide-header">Saving Your Changes with a Commit</h1>
 
-Sometimes, you’ll want to save all of the changes to files that have been made inside your repository.
+Once your changes are staged and you’re ready to save this version of your project, it’s time to commit.
 
-Instead of specifying each file, you can write `git add .`, which will add all of the files in the working directory to the next commit.
-
-Proceed with caution when using `git add .`, as you could accidentally add files with sensitive information.
-
----
-
-<h1 class="slide-header">It's Not Saved Yet</h1>
-
-Once we’re ready to officially record this version of our project, type:
+💻 **In your terminal, type:**
 
 ```
-$ git commit -m "created a new post.txt file"
+git commit -m "created a new post.txt file"
 ```
 
-The `-m` option allows you to include a message that describes the changes you made for your collaborators or future you.
-
-These should be short but descriptive and clearly indicate what changes each commit makes to the project.
+- The `-m` option lets you write a short message describing what this commit does.
+- Commit messages should be clear, short, and explain what changes you made.
 
 <img src="./assets/git-commit.png" alt="Git Commit Post" style="width:700px;"/>
 
-Note: In some versions of Git CLI, you will be asked to provide configuration details before committing. <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration" target="_blank" rel="noreferrer noopener">Here</a> is a link to additional Git configuration directions.
+💡 **Note:** If your Git setup is missing configuration details (like your name or email), Git may ask you to set that up before you can commit.
+
+You can find configuration instructions <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration" target="_blank" rel="noreferrer noopener">here</a>.
 
 ---
 
-<h1 class="slide-header">Let's Run That Back</h1>
+<h1 class="slide-header">How Saving Works in Git</h1>
 
-Git allows you to add changes to your project in the local repository with two steps:
+In Git, saving changes is a **two-step process**:
+
+1. First, you **stage** the file using:
 
 ```
-$ git add <your-file-name>
-$ git commit -m "message"
+git add <your-file-name>
 ```
 
-This might be a strange concept to non-developers who are used to clicking a save icon and moving on. For developers, a two-step save process provides benefits, such as making incremental edits to a challenging build and reviewing each file before committing it.
+2. Then, you **commit** the staged changes with a message using:
 
-If you’re curious, you can read more about how developers use the two-step saving process to their advantage <a href="https://softwareengineering.stackexchange.com/questions/69178/what-is-the-benefit-of-gits-two-stage-commit-process-staging" target="_blank" rel="noreferrer noopener">here</a>.
+```
+git commit -m "your message here"
+```
+
+This might feel unusual if you are used to simply clicking “Save” in other programs.  
+But for developers, this two-step process is helpful — it allows you to:
+
+- Make small, careful changes.
+- Review what you’re saving before you finalize it.
+
+If you’d like to learn more about why developers prefer this method, you can read more <a href="https://softwareengineering.stackexchange.com/questions/69178/what-is-the-benefit-of-gits-two-stage-commit-process-staging" target="_blank" rel="noreferrer noopener">here</a>.
 
 <img src="./assets/git-add-commit.png" alt="Git Add Commit" style="width:500px;"/>
 
 ---
 
-<h1 class="slide-header">Commit History</h1>
+<h1 class="slide-header">What Is Commit History?</h1>
 
-Further into a project, after you’ve made many commits, you might want to look back and see a timeline of those changes.
+As your project grows and you make more commits, you may want to look back and see all the changes you have made.
 
-Git allows developers to view a list of commits, the submission date, the author, the commit message, and a unique number that identifies the commit, called an **SHA**.
+Git allows you to view your **commit history**, which shows:
+
+- A list of all commits made so far.
+- The author of each commit.
+- The date and time each commit was made.
+- The commit message.
+- A special unique number called an **SHA**, which identifies each commit.
+
+This history helps you understand how your project has changed over time.
 
 ---
 
-<h1 class="slide-header">The Commit History</h1>
+<h1 class="slide-header">Viewing Your Commit History</h1>
 
-To view the timeline of changes, you can run:
+To see a timeline of all your commits, use the `git log` command.
+
+💻 **In your terminal, type:**
 
 ```
-$ git log
+git log
 ```
 
-This will yield a list of entries that looks like this:
+This will show entries that look like this:
 
 ```
 commit 7d5be88672611f7320073199f450e108876aca49 (HEAD -> main)
-Author: Lauren Perez <lauren.perez@generalassemb.ly>
+Author: First Last <your@email.com>
 Date:   Tue Mar 18 15:34:29 2025 -0700
 
     created a new post.txt file
 ```
 
+Each entry includes the commit’s **SHA**, the **author**, the **date**, and the **commit message**.
+
 <img src="./assets/git-log.png" alt="Git Log" style="width:700px;"/>
-
----
-
-<h1 class="slide-header">Try it Out</h1>
-
-Run `git log` to see a timeline of the changes you've made.
-
-<img src="./assets/Icon_Test_Flask_2.png" alt="Flask Icon" style="width:200px;"/>
 
 ---
 
 <h1 class="slide-header">Putting it All Together</h1>
 
-- Open your terminal and navigate to the directory you’ve been using to store information about this course. If you don’t have one yet, make one.
-- Create a directory inside of that called `git-practice`.
-- Navigate into that new directory. You can make sure you’re in the right place using the `pwd` command.
-- Use `git init` to create a Git repository in the `git-practice` directory.
+Let’s practice everything you’ve learned so far:
 
-**Note**: Before running `git init`, make sure you’re not already inside another Git repository. Type `git status`. If you see `fatal: Not a git repository (or any of the parent directories): .git`, then you know you’re good to go and you can safely run `git init` within this folder.
+💻 **Open your terminal and navigate to your desktop:**
+
+```
+cd ~/Desktop
+```
+
+**Create a new folder called `git-practice`:**
+
+```
+mkdir git-practice
+```
+
+**Move into the `git-practice` directory:**
+
+```
+cd git-practice
+```
+
+**Double-check that you are in the right place by running:**
+
+```
+pwd
+```
+
+**Before you initialize Git:**  
+Make sure you are not already inside another Git repository.
+
+**Check by typing:**
+
+```
+git status
+```
+
+If you see this message:
+
+```
+fatal: Not a git repository (or any of the parent directories): .git
+```
+
+then you’re in the right place and can safely initialize Git.
+
+**Now, initialize a Git repository in this directory:**
+
+```
+git init
+```
 
 ---
 
-<h1 class="slide-header">Putting it All Together: Add and Commit</h1>
+<h1 class="slide-header">Putting It All Together: Add and Commit</h1>
 
-- Staying in the `git-practice` directory, run the `ls -a` command to see the `.git` directory you’ve just created.
-- Create a new file called `README.txt` and run `git status`. What output do you get?
-- Use the `git add README.txt` command to add the new file to the staging area.
-- Run `git status` again. **How has the output changed?**
-- Now, commit the changes you made using `git commit -m "..."`. Give the commit an appropriate message. Remember, it should be short but descriptive.
+**While inside the `git-practice` directory, run:**
 
-You did it! In due time you’ll be able to complete this process with your eyes closed (although we don’t recommend it).
+```
+ls -a
+```
+
+to see the hidden `.git` directory you just created.
+
+**Create a new file called `README.txt`:**
+
+```
+touch README.txt
+```
+
+**Check the status with:**
+
+```
+git status
+```
+
+_What does Git tell you about this new file?_
+
+**Add the file to the staging area using:**
+
+```
+git add README.txt
+```
+
+**Run `git status` again.**
+
+_How has the output changed? What do you see now?_
+
+**Finally, commit the changes with a clear, short message:**
+
+```
+git commit -m "add README.txt file"
+```
+
+🎉 **You did it!**
+
+With practice, this process will feel natural and easy to remember. (But we still recommend paying close attention each time!)
 
 ---
 
 <h1 class="slide-header">Local vs. Remote</h1>
 
-So far, we’ve been making changes locally by editing files and repositories on our computers. That’s all well and good, but what if we want to collaborate with others or back up our files just in case our computer dies? For that, we need to connect our local repository to a remote one.
+Up to this point, all of the changes we’ve made have been **local** — stored only on your computer.
 
-Enter GitHub.
+But what if you want to:
 
-<img src="./assets/github-local-remote.png" alt="Local vs Remote" style="width:500px;"/>
+- Work with other people on the same project?
+- Save a backup of your code in case something happens to your computer?
 
----
+To do this, we need to connect our local repository to a **remote** repository — a version of your project that lives online.
 
-<h1 class="slide-header">What is Github?</h1>
+This is where **GitHub** comes in.
 
-GitHub is a company that’s famous for the platform it built to manage Git repositories in the cloud.
-
-On GitHub, developers can share their code, comment on it, and review changes. It’s an implementation of the same Git software you installed on your computer, but it also comes with some additional features.
-
-In a lot of ways, GitHub is like Dropbox.
-
-You have a folder in the cloud — your remote repository — that syncs with your computer. You can share this remote repository with others, grant them special permissions, and view different versions of your files.
-
-<img src="./assets/github_logo.jpg" alt="Github Logo" style="width:400px;"/>
+<img src="./assets/git-vs-github.png" alt="Github Flow" style="width:600px;"/>
 
 ---
 
-<h1 class="slide-header">So, How Do Developers Do This?</h1>
+<h1 class="slide-header">What is GitHub?</h1>
 
-Consider a project like Node.js, a JavaScript framework. Node.js is completely open source, which means that anyone can read (and even copy) the code that makes it work — including you!
+**GitHub** is an online platform where developers can store and manage their Git repositories in the cloud.
 
-The source code is publicly available <a href="https://github.com/nodejs/node" target="_blank" rel="noreferrer noopener">here</a> on GitHub. If you visit the main repository, you’ll see that there are more than 2,000 contributors who have committed changes to Node.js.
+<img src="./assets/github-logo.png" alt="Github Logo" style="width:300px;"/>
 
-Although it’s open source and anyone can read or contribute to its code, Node.js is maintained by a company called Joyent. These contributors don’t have the ability to edit the original Joyent repository — that wouldn’t be very efficient or safe. Someone could accidentally make a change that conflicts with someone else’s contributions, causing the code to break. Changes need to be inspected and approved by Joyent before they can officially be added to the project.
+**On GitHub, you can:**
+
+- **Share** your code with others.
+- Comment on and **review** other people’s code.
+- Track changes and view the **full history** of a project.
+
+You can think of GitHub as a tool that works alongside the Git software you installed on your computer — but with added features for collaboration and storage.
+
+In many ways, GitHub is like having an online folder (a **remote repository**) that stays in sync with your computer.
+
+<img src="./assets/write-and-push-code.png" alt="Github Flow" style="width:600px;"/>
+
+---
+
+<h1 class="slide-header">How Do Developers Share and Collaborate?</h1>
+
+Many projects — like **Node.js**, a popular JavaScript tool — are **open source**.  
+This means anyone can view the code, and even suggest improvements.
+
+You can visit the **Node.js** source code on GitHub <a href="https://github.com/nodejs/node" target="_blank" rel="noreferrer noopener">here</a>.  
+There are thousands of developers who have contributed to this project over time.
+
+But even though the project is open to the public, changes do not go directly into the main project right away.
+
+- The project is carefully managed and reviewed by a core team.
+- Before any new code is added, it is inspected and approved by maintainers to make sure it works well and doesn’t cause problems.
+
+At this stage in your learning, it’s just important to understand that **developers use GitHub to collaborate and carefully review changes before they become part of a live project**.
 
 ---
 
 <h1 class="slide-header">The Github Workflow</h1>
 
-The workflow for contributing to an open-source product or your dev team’s project comprises the following steps:
+When developers contribute to shared projects — either open source or with a team — they follow a process designed to make collaboration safe and organized.
 
-1. Forking
-2. Cloning
-3. Editing
-4. Adding/committing
-5. Pushing
-6. Submitting a pull request
+Here is a **high-level overview** of that workflow:
 
-<img src="./assets/github-flow.gif" alt="Github Flow" style="width:500px;"/>
+1. **Forking** — making a copy of a project under your own GitHub account.
+2. **Cloning** — downloading that copy to your local machine.
+3. **Editing** — making changes on your local computer.
+4. **Adding/committing** — saving those changes with clear messages.
+5. **Pushing** — sending your changes from your computer back to GitHub.
+6. **Submitting a pull request** — asking the project owner to review and consider adding your changes to the main project.
+
+> Don’t worry if this feels like a lot! You will learn these steps slowly over time. For now, it’s enough to know that **GitHub provides a clear process for developers to contribute and collaborate.**
+
+<img src="./assets/github-flow.gif" alt="Github Flow" style="width:600px;"/>
 
 ---
 
 <h1 class="slide-header">Forking</h1>
 
-To add a copy of someone else’s GitHub repository to your GitHub account, fork it by clicking the Fork button in the upper right-hand corner.
+On GitHub, if you want to make changes to someone else’s project, the first step is to **fork** it.  
+Forking creates a copy of the original repository in your own GitHub account.
 
-This forked repository is not perfectly identical, but it includes all of the same source files, issues, and commit history.
+<img src="./assets/github-fork.png" alt="Fork a Repo" style="width:600px;"/>
 
-By forking Joyent’s repository, for example, you now have a full working copy of the Node.js source code to play with. This way, when you break something (which you will), the main repository won’t be affected.
+This copy contains:
 
-<img src="./assets/fork.png" alt="Fork a Repo" style="width:700px;"/>
+- All of the original project’s files
+- The commit history
+- Open issues
+
+For example, if you fork the Node.js repository, you now have your own version to experiment with. Any changes or mistakes you make will not affect the original project.
+
+<img src="./assets/fork.png" alt="Github Fork a Repo" style="width:800px;"/>
+
+At this stage, it’s enough to understand that **forking lets you safely work on your own version of a project.**
 
 ---
 
 <h1 class="slide-header">Cloning</h1>
 
-To make a local copy of a fork, you’ll clone the repository. This will save the code on your machine so you can edit it.
+After forking a repository on GitHub, the next step is often to **clone** it.  
+Cloning makes a local copy of the project on your own computer so you can edit the files.
 
-To do so, open your terminal, navigate to where you’d like to store the repository, then type:
+<img src="./assets/github-clone.png" alt="Clone a Repo" style="width:600px;"/>
+
+To do this, you would navigate to the folder where you’d like to save the repository, and type:
 
 ```
 git clone https://url-to-clone
 ```
 
-You can find the URL to clone by clicking the green button that says “Clone or download.”
+You can find the repo's URL by clicking the green **Code** button on the GitHub repository page and copying the link shown there.
 
-**Hint**: If you’re following along in Git Bash on Windows, the commands to copy and paste a repository are a little different than the default Windows copy/paste commands. Use `control + insert` to copy and `shift + insert` to paste.
+**This is just an introduction to these concepts. You’ll practice them more in future lessons!**
 
-<img src="./assets/clone.png" alt="Clone" style="width:700px;"/>
-
----
-
-<h1 class="slide-header">Adding and Committing</h1>
-
-Once you've cloned a project, you're free to make changes on your computer and manage your **local** version of it: the one living in your computer.
-
-Remember, you’re editing the code on your _local_ copy of the repository. We know that any time we do this, we need to use our normal git commands so that our local copy is protected if we goof up.
-
-Recall these commands:
-
-```
-$ git add <your-file-name>
-$ git commit -m "message"
-```
+<img src="./assets/clone.png" alt="Github Clone a Repo" style="width:800px;"/>
 
 ---
 
-<h1 class="slide-header">Pushing From Local to Remote</h1>
+<h1 class="slide-header">Adding and Committing Changes</h1>
 
-Once you’ve committed these changes, your local repository will differ from your remote repository.
+Once you’ve cloned a project from GitHub, you can make changes to your **local copy** on your computer.
 
-To update your remote repository on GitHub, you have to **push** those changes using the `git push origin master` command.
+Every time you make changes, you should save and protect those changes using the Git commands you’ve already learned:
 
-You don't need to worry about the `origin` and `master` part just yet. However, if you’re curious, here’s a brief overview:
+```
+git add <your-file-name>
+git commit -m "a short, clear message describing your changes"
+```
 
-- `origin` is a shortcut for the URL of your default remote repository (in this case, the repository on GitHub). You can have many remotes if you want, but we’re only going to work with one for now.
-- `master` refers to the **branch** on your remote repository where you are currently adding your changes. Again, for now, we’re just going to be working on the `master` branch.
+These commands make sure your local copy keeps a safe record of your work.
 
-<img src="./assets/github-local-remote.png" alt="Local vs Remote" style="width:500px;"/>
+---
+
+<h1 class="slide-header">Pushing Changes to GitHub</h1>
+
+After committing changes to your local repository, your local and remote repositories are different.
+
+To send your changes from your computer to your remote repository on GitHub, use the following command:
+
+```
+git push origin main
+```
+
+> **Note:**
+
+- `origin` is a shortcut that refers to the URL of your remote repository on GitHub.
+- `main` is the default branch name where changes are stored on GitHub.
+- Some older tutorials use the term `master`. Today, `main` is the most common default.
+
+You don’t need to fully understand these terms yet — just know that `git push origin main` will update your project on GitHub with the latest changes from your computer.
+
+<img src="./assets/write-and-push-code.png" alt="Github Flow" style="width:600px;"/>
 
 ---
 
 <h1 class="slide-header">Submitting a Pull Request</h1>
 
-At this point, your local and remote repositories contain the changes you’ve made. If you want to share these changes with the original repository owner, Joyent, you can submit a **pull request**.
+Once your changes are in both your **local** and **remote** repositories, you might want to share them with the owner of the original project.
 
-A pull request effectively says, “Hello, maintainer of Project X. I made some changes here in my forked copy, and I think they’re good ones. You should add them to your repository.”
+You can do this by submitting a **pull request** on GitHub.
 
-Pull requests are a GitHub feature, so you’ll need to head back to the browser to submit them.
+A pull request is a way of saying:
+
+_"Hello! I made some changes in my copy of your project, and I’d like you to review them and consider adding them to the main project."_
+
+Pull requests are part of GitHub’s collaboration features and are **submitted through the GitHub website — not from the terminal**.
+
+For now, it’s enough to understand that a **pull request** allows you to suggest changes to someone else’s project in a safe, reviewable way.
 
 <img src="./assets/new-pull-request.png" alt="Pull request" style="width:700px;"/>
 
@@ -476,32 +663,33 @@ Pull requests are a GitHub feature, so you’ll need to head back to the browser
 
 <h1 class="slide-header">Terms Review</h1>
 
-That was a lot of new terms, so let's review the main commands involved with tracking work between local and remote repositories:
+You’ve just learned a lot of new terms! Let’s do a quick review:
 
-<details>
-  <summary>clone</summary>
-  Downloads a repository hosted on a remote server (like github) onto your local machine
-</details>
+**local**
 
-<details>
-  <summary>push</summary>
-  Moves changes that you've made locally, on your own machine, to the remote version of the repository.
-</details>
+- Refers to your own computer, where you make and save changes.
 
-<details>
-  <summary>pull</summary>
-  Sets up a request for a repository owner to combine your personal version with the main version of a repository.
-</details>
+**remote**
 
-<details>
-  <summary>local</summary>
-  Your own computer.
-</details>
+- A version of the repository hosted on a server, usually on GitHub or another web-based service.
 
-<details>
-  <summary>remote</summary>
-  A server hosted somewhere other than your own computer, typically Github or other web-hosted service.
-</details>
+**fork**
+
+- Creates a personal copy of someone else’s repository in your own GitHub account. This allows you to make changes without affecting the original project.
+
+**clone**
+
+- Downloads a repository (often from your fork on GitHub) onto your local computer so you can work on it.
+
+**push**
+
+- Sends the changes you’ve made on your local computer to your remote repository on GitHub.
+
+**pull request** (often shortened to **PR**)
+
+- A request to the repository owner, asking them to review and possibly add your changes from your remote repository to the main project on GitHub.
+
+**_Don’t worry if this feels like a lot — you’ll practice these steps more in the future, and they will start to feel familiar!_**
 
 ---
 
@@ -520,9 +708,24 @@ In which step of the GitHub workflow do you initiate a transfer of information *
 
 ---
 
+<h1 class="slide-header">Knowledge Check</h1>
+
+Which GitHub feature allows you to **suggest changes to the original project owner for review** and possible inclusion in their repository?
+
+<fieldset>
+    <legend>Please select one of the following</legend>
+<input type='radio' name='answers' id='answer1' value='answer1'/><label for='answer1'>clone</label><br />
+<input type='radio' name='answers' id='answer2' value='answer2' /><label for='answer2'>push</label><br />
+<input type='radio' name='answers' id='answer3' value='answer3' /><label for='answer3'>fork</label><br />
+<input type='radio' name='answers' id='answer4' value='answer4' correct='true' /><label for='answer4'>pull request</label><br />
+</fieldset>
+<button class='ant-btn ant-btn-primary multiple-choice-radio-submit'>Submit Answer</button>
+
+---
+
 <h1 class="slide-header">Conclusion</h1>
 
-Well done! You really committed to that lesson.
+Well done! You really **_committed_** to that lesson.
 
 By now, you should be able to do the following:
 
@@ -530,11 +733,9 @@ By now, you should be able to do the following:
 - Use several of the most common Git commands.
 - Describe the phases of Git tracking and syncing between remote and local repositories
 
-Check out these resources from Git:
+For more review, check out these resources from Git:
 
-- <a href="https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control " target="_blank" rel="noreferrer noopener">Version Control: Getting Started</a>
-- <a href="https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository" target="_blank" rel="noreferrer noopener">Git Basics</a>
-
-<a href="https://softwareengineering.stackexchange.com/questions/69178/what-is-the-benefit-of-gits-two-stage-commit-process-staging" target="_blank" rel="noreferrer noopener">Read</a> how developers use the two-step saving process to their advantage.
+- <a href="https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control" target="_blank" rel="noreferrer noopener">Getting Started: About Version Control</a>
+- <a href="https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository" target="_blank" rel="noreferrer noopener">Git Basics - Recording Changes to the Repository</a>
 
 </textarea>
